@@ -1,16 +1,16 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 
-import Container from './scr/scripts/Container.js';
-import './scr/scripts/TodoFooter.js';
-import './scr/scripts/TodoInput.js';
-import './scr/scripts/TodoListItem.js';
-import './scr/scripts/TodoList.js';
+import Container from './src/scripts/Container.js';
+import './src/scripts/TodoFooter.js';
+import './src/scripts/TodoInput.js';
+import './src/scripts/TodoListItem.js';
+import './src/scripts/TodoList.js';
 
-import './scr/style/TodoList.css';
-import './scr/style/TodoFooter.css';
-import './scr/style/TodoInput.css';
-import './scr/style/TodoListItem.css';
-import './scr/style/Container.css';
+import './src/style/TodoList.css';
+import './src/style/TodoFooter.css';
+import './src/style/TodoInput.css';
+import './src/style/TodoListItem.css';
+import './src/style/Container.css';
 
 ReactDOM.render(<Container/>, document.getElementById('root'));

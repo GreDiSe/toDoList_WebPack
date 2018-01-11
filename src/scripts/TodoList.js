@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoListItem from './TodoListItem';
+import List from 'material-ui/List';
 
 class TodoList extends React.Component {
     constructor(){
@@ -9,9 +10,9 @@ class TodoList extends React.Component {
     }
 
     checkForRenderTask = (item) => {
-        if (this.props.radioChecked === this.DONE && item.status !== this.DONE) {
+        if (this.props.radio === this.DONE && item.status !== this.DONE) {
             return false;
-        } else if (this.props.radioChecked === this.IN_PROGRESS && item.status !== this.IN_PROGRESS) {
+        } else if (this.props.radio === this.IN_PROGRESS && item.status !== this.IN_PROGRESS) {
             return false;
         } else {
             return true;
@@ -30,16 +31,21 @@ class TodoList extends React.Component {
 
     render() {
         const renderTasks = this.props.tasks.filter(this.checkForRenderTask);
-        return renderTasks.map((curTask, i) => {
-            return (
-                <TodoListItem
-                    key={i}
-                    task={curTask}
-                    deleteTask={() => this.deleteTask(i)}
-                    checkedItem={() => this.checkedItem(i)}
-                />
-            )
-        })
+        return (
+            <List>
+                {renderTasks.map((curTask, i) => {
+                    return (
+                        <TodoListItem
+                            key={i}
+                            task={curTask}
+                            className={'info'}
+                            deleteTask={() => this.deleteTask(i)}
+                            checkedItem={() => this.checkedItem(i)}
+                        />
+                    )
+                })}
+            </List>
+        )
     }
 }
 export default TodoList;

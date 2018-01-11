@@ -9,9 +9,6 @@ class TodoFooter extends React.Component {
     }
 
     showTasks = (status, ref) => {
-        /*id = 0 - all
-        id = 1 - done
-        id = 2 - notDone*/
         this.props.setNewState({radioChecked: status});
         this.refs.all.checked = false;
         this.refs.notDone.checked = false;
@@ -31,20 +28,17 @@ class TodoFooter extends React.Component {
         const newTasks = this.props.tasks.filter(cur => {
             return cur.status !== this.DONE;
         });
-        this.props.tasks({tasks: newTasks});
+        this.props.setNewState({tasks: newTasks});
     };
 
     render() {
         return (
             <div>
                 <table>
-                    <tbody>
                     <td><button onClick={this.selectAllEl}>Выделить все</button></td>
                     <td><button onClick={this.deleteSelected}>Удалить выделенные</button></td>
-                    </tbody>
                 </table>
                 <table className={'info'}>
-                    <tbody>
                     <tr>
                         <td ref='count'>Количество: 0</td>
                         <td><input
@@ -64,7 +58,6 @@ class TodoFooter extends React.Component {
                             type={'radio'}
                         />Не сделаные</td>
                     </tr>
-                    </tbody>
                 </table>
             </div>
         )

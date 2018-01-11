@@ -3,6 +3,7 @@ import React from 'react';
 class TodoInput extends React.Component {
     constructor(){
         super();
+        this.IN_PROGRESS = 'in_progress';
         this.defaultTaskStatus = { status: this.IN_PROGRESS};
     }
 
@@ -18,7 +19,6 @@ class TodoInput extends React.Component {
     render() {
         return (
             <table >
-                <tbody>
                 <tr className={'addTask'}>
                     <td>
                         <input
@@ -32,7 +32,6 @@ class TodoInput extends React.Component {
                         <button className={'buttonAdd'} onClick={this.addTask}>Добавить</button>
                     </td>
                 </tr>
-                </tbody>
             </table>
         )
     }
