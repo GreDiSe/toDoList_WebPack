@@ -1,14 +1,5 @@
-import { combineReducers } from 'redux';
-import tasksReducer from  '../reducers/tasksReducer';
-import radioCheckedReducer from  '../reducers/radioCheckedReducer';
-import countReducer from  '../reducers/countReducer';
+import {initialState} from './initialState';
+import appReducer from '../reducers/indexReducer';
+import { createStore } from 'redux';
 
-const appReducer =  combineReducers({
-    tasksReducer,
-    radioCheckedReducer,
-    countReducer
-});
-
-
-const rootReducer = (state, action) => appReducer(state, action);
-export default rootReducer;
+export const store = createStore(appReducer, initialState);

@@ -9,7 +9,7 @@ import {
 import { NAME_IN_PROGRESS, NAME_DONE } from "../store/initialState";
 
 
-export default tasksReducer(state.tasks = [], {
+export default tasksReducer(state.tasks, {
     [`${ADD_TASK}`]: (state, action) => ({
         ...state,
         tasks: {
