@@ -7,9 +7,10 @@ import {
 } from '../action/actionTypes';
 
 import { NAME_IN_PROGRESS, NAME_DONE } from "../store/initialState";
+import injectReducer from './injectReducer'
 
 
-export default tasksReducer(state.tasks, {
+export default injectReducer(state.tasks = [], {
     [`${ADD_TASK}`]: (state, action) => ({
         ...state,
         tasks: {
@@ -50,5 +51,6 @@ export default tasksReducer(state.tasks, {
             NAME_IN_PROGRESS;
 
         return {newState};
-    }
+    },
+
 })
