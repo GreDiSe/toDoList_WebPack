@@ -8,9 +8,10 @@ import {
 
 import { NAME_IN_PROGRESS, NAME_DONE } from "../store/initialState";
 import injectReducer from './injectReducer'
+import {initialState} from '../store/initialState';
 
 
-export default injectReducer(state.tasks = [], {
+export default injectReducer(initialState.tasks = [], {
     [`${ADD_TASK}`]: (state, action) => ({
         ...state,
         tasks: {
