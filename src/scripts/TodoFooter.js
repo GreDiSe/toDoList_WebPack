@@ -30,6 +30,7 @@ class TodoFooter extends React.Component {
             return cur.status !== this.DONE;
         });
         this.props.setNewState({tasks: newTasks});
+
     };
 
     render() {
