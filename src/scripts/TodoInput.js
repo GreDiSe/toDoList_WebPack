@@ -1,25 +1,15 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button'
+import Button from 'material-ui/Button';
+import { connect } from 'react-redux';
+import { addTask } from "./action/tasksActions";
 
 class TodoInput extends React.Component {
-    constructor(){
-        super();
-        this.IN_PROGRESS = 'in_progress';
-        this.defaultTaskStatus = { status: this.IN_PROGRESS};
-    }
-
-    addTask = () => {
-        const newText = this.ref.value;
-        this.ref.value = '';
-        const newTasks = this.props.tasks.concat();
-        newTasks.push({name: newText, ...this.defaultTaskStatus});
-        this.props.setNewState({tasks: newTasks});
-    };
 
     render() {
         return (
             <table >
+                <tbody>
                 <tr className={'addTask'}>
                     <td>
                         <TextField
@@ -29,14 +19,23 @@ class TodoInput extends React.Component {
                     </td>
                     <td>
                         <Button
-                            onClick={this.addTask}
+                            onClick={() => this.onAddTask(this.ref.value)}
                             raised color="primary">
                             Добавить
                         </Button>
                     </td>
                 </tr>
+                </tbody>
             </table>
         )
     }
 }
-export default TodoInput;
+export default connect(
+    state,
+    dispatch => ({
+        onAddTask: value => {
+            dispatch(addTask(value))
+        }
+    })
+)(TodoInput);
+
