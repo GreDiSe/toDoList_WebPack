@@ -3,9 +3,12 @@ import TodoListItem from './TodoListItem';
 import List from 'material-ui/List';
 import { connect } from 'react-redux';
 import { removeTask, changeStatus } from "./action/tasksActions";
+import { showCountTasks } from "./action/countActions";
 
 class TodoList extends React.Component {
     render() {
+        const tasks = this.props.filter(cur => cur.status === this.props.radioChecked);
+        this.onShowCountTasks(tasks.length);
         return (
             <List
                 style={
@@ -16,7 +19,7 @@ class TodoList extends React.Component {
                     }
                 }
             >
-                {this.props.state.map((curTask, i) => {
+                {tasks.map((curTask, i) => {
                     return (
                         <TodoListItem
                             key={i}
@@ -32,7 +35,8 @@ class TodoList extends React.Component {
 }
 export default connect(
     state => ({
-        state: state.tasks
+        state: state.tasks,
+        radioChecked: state.radioChecked
     }),
     dispatch => ({
         onRemoveTask: index => {
@@ -40,6 +44,10 @@ export default connect(
         },
         onChangeStatus: index => {
             dispatch(changeStatus(index))
+        },
+        onShowCountTasks: count => {
+            dispatch(showCountTasks(count))
         }
+
     })
 )(TodoList);

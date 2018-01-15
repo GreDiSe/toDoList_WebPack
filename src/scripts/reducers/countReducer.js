@@ -1,10 +1,8 @@
-import { CHANGE_RADIO_BUTTON } from "../action/actionTypes";
+import { SHOW_COUNT_TASKS } from "../action/actionTypes";
 
 export default countReducer(state.count = 0, {
-    [`${CHANGE_RADIO_BUTTON}`]: (state, action) => ({
+    [`${SHOW_COUNT_TASKS}`]: (state, action) => ({
         ...state,
-        radioChecked: action.radioName
+        count: action.count
     })
 })
-
-

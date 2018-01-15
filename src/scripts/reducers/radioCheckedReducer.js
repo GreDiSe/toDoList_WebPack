@@ -1,11 +1,10 @@
-import { SHOW_COUNT_TASKS } from "../action/actionTypes";
+import { CHANGE_RADIO_BUTTON } from "../action/actionTypes";
 import { NAME_ALL } from "../store/initialState";
 
-export default countReducer(state.radioChecked = NAME_ALL, {
-    [`${SHOW_COUNT_TASKS}`]: (state, action) => ({
+export default radioCheckedReducer(state.radioChecked = NAME_ALL, {
+    [`${CHANGE_RADIO_BUTTON}`]: (state, action) => ({
         ...state,
-        count: action.count
+        radioChecked: action.radioName
     })
 })
-
 
