@@ -36,7 +36,6 @@ class TodoListItem extends React.Component {
                     </IconButton>
                 </ListItemSecondaryAction>
             </ListItem>
-
         )
     }
 }
