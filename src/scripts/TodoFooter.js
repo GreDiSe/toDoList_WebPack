@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'material-ui/Button'
 
 class TodoFooter extends React.Component {
     constructor(){
@@ -35,12 +36,26 @@ class TodoFooter extends React.Component {
         return (
             <div>
                 <table>
-                    <td><button onClick={this.selectAllEl}>Выделить все</button></td>
-                    <td><button onClick={this.deleteSelected}>Удалить выделенные</button></td>
+
+                    <td>
+                        <Button
+                            onClick={this.selectAllEl}
+                            raised color="primary">
+                            Выделить
+                        </Button>
+                    </td>
+                    <td>
+                        <Button
+                            onClick={this.deleteSelected}
+                            raised color="primary">
+                            Удалить выделенные
+                        </Button>
+                    </td>
+
                 </table>
                 <table className={'info'}>
                     <tr>
-                        <td ref='count'>Количество: 0</td>
+                        <td ref='count'>Количество: {this.props.count}</td>
                         <td><input
                             ref='all'
                             defaultChecked={true}

@@ -12,7 +12,7 @@ class Container extends React.Component {
         this.IN_PROGRESS = 'in_progress';
         this.ALL = 'all';
 
-        this.state = {tasks: [], radioChecked: this.ALL};
+        this.state = {tasks: [], radioChecked: this.ALL, count: 0};
         this.defaultTaskStatus = {status: this.IN_PROGRESS};
     };
 
@@ -22,7 +22,7 @@ class Container extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={'width'}>
 
                 <TodoInput
                     tasks={this.state.tasks}
@@ -30,13 +30,17 @@ class Container extends React.Component {
                 />
 
                 <TodoList
+                    className={'width'}
                     tasks={this.state.tasks}
                     radio={this.state.radioChecked}
+                    count={this.state.count}
                     setNewState={this.setNewState}
+
                 />
 
                 <TodoFooter
                     tasks={this.state.tasks}
+                    count={this.state.count}
                     radio={this.state.radioChecked}
                     setNewState={this.setNewState}
                 />

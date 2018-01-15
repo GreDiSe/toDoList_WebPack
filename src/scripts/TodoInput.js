@@ -1,4 +1,6 @@
 import React from 'react';
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button'
 
 class TodoInput extends React.Component {
     constructor(){
@@ -7,13 +9,12 @@ class TodoInput extends React.Component {
         this.defaultTaskStatus = { status: this.IN_PROGRESS};
     }
 
-
     addTask = () => {
-        //const {tasks, setNewState} = props;
-        const text = this.refs.task.value;
-        this.refs.task.value = '';
-        this.props.tasks.push({name: text, ...this.defaultTaskStatus});
-        this.props.setNewState({tasks: this.props.tasks});
+        const newText = this.ref.value;
+        this.ref.value = '';
+        const newTasks = this.props.tasks.concat();
+        newTasks.push({name: newText, ...this.defaultTaskStatus});
+        this.props.setNewState({tasks: newTasks});
     };
 
     render() {
@@ -21,15 +22,17 @@ class TodoInput extends React.Component {
             <table >
                 <tr className={'addTask'}>
                     <td>
-                        <input
-                            ref='task'
-                            className={"inputText"}
-                            type={"text"}
-                            placeholder={"Напиши что-то"}
+                        <TextField
+                            inputRef={ref => this.ref = ref}
+                            placeholder="Введи задачу"
                         />
                     </td>
                     <td>
-                        <button className={'buttonAdd'} onClick={this.addTask}>Добавить</button>
+                        <Button
+                            onClick={this.addTask}
+                            raised color="primary">
+                            Добавить
+                        </Button>
                     </td>
                 </tr>
             </table>

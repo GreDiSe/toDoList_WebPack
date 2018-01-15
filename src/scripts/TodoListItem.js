@@ -2,7 +2,7 @@ import React from 'react';
 import { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/List';
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
-import CommentIcon from 'material-ui-icons/Comment';
+import Close from 'material-ui-icons/Close'
 
 class TodoListItem extends React.Component {
     constructor(){
@@ -15,19 +15,24 @@ class TodoListItem extends React.Component {
         const className = cur.status === this.DONE ? 'cross' : 'notCross';
         return (
             <ListItem
+                style={
+                    {
+                    padding: 0,
+                    width: '396px'
+                    }
+                }
                 dense
                 button
                 onClick={this.props.checkedItem}
             >
                 <Checkbox
                     checked={cur.status === this.DONE}
-                    tabIndex={-1}
                     disableRipple
                 />
                 <ListItemText className={className} primary={cur.name} />
                 <ListItemSecondaryAction>
                     <IconButton aria-label="Comments">
-                        <CommentIcon onClick={this.props.deleteTask} />
+                        <Close onClick={this.props.deleteTask} className="material-icons"/>
                     </IconButton>
                 </ListItemSecondaryAction>
             </ListItem>

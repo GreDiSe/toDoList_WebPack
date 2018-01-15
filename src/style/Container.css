@@ -56,3 +56,8 @@ table{
 .info{
     width: 100%;
 }
+
+.width{
+    width: 400px;
+    padding: 0;
+}

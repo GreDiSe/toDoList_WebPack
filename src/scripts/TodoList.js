@@ -18,11 +18,20 @@ class TodoList extends React.Component {
             return true;
         }
     };
+
     deleteTask = (index) => {
         const newTasks = this.props.tasks.concat();
         newTasks.splice(index, 1);
         this.props.setNewState({tasks: newTasks});
     };
+
+    setCountTasks = length => {
+        if(this.props.count === length) return false;
+        else{
+            this.props.setNewState({count: length});
+        }
+    };
+
     checkedItem = index => {
         const newTasks = this.props.tasks.concat();
         newTasks[index].status = newTasks[index].status === this.DONE ? this.IN_PROGRESS : this.DONE;
@@ -31,14 +40,24 @@ class TodoList extends React.Component {
 
     render() {
         const renderTasks = this.props.tasks.filter(this.checkForRenderTask);
+        this.setCountTasks(renderTasks.length)
+
         return (
-            <List>
+            <List
+                className={'width'}
+                style={
+                    {
+                        width: '396px',
+                        padding: 0,
+                        border: '2px solid grey'
+                    }
+                }
+            >
                 {renderTasks.map((curTask, i) => {
                     return (
                         <TodoListItem
                             key={i}
                             task={curTask}
-                            className={'info'}
                             deleteTask={() => this.deleteTask(i)}
                             checkedItem={() => this.checkedItem(i)}
                         />
