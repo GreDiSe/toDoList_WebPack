@@ -25,7 +25,7 @@ export default injectReducer(initialState.tasks, {
 
         newState.splice(newState.indexOf(action.index), 0);
 
-        return {newState};
+        return newState;
     },
     [`${REMOVE_SELECTED_TASKS}`]: state => {
         const newState = state.concat();
@@ -34,24 +34,25 @@ export default injectReducer(initialState.tasks, {
             return cur.status === NAME_IN_PROGRESS;
         });
 
-        return {newState};
+        return newState;
     },
     [`${SELECT_ALL_TASKS}`]: state => {
-        const newState = state.map(cur => {
+        return state.map(cur => {
             cur.status = NAME_DONE;
         });
-
-        return {newState}
 
     },
     [`${CHANGE_STATUS}`]: (state, action) => {
         const newState = state.concat();
+        console.log('Start', state, action.index);
 
         newState[action.index].status = newState[action.index].status === NAME_IN_PROGRESS ?
             NAME_DONE :
             NAME_IN_PROGRESS;
 
-        return {newState};
+
+        console.log('End', newState);
+        return newState;
     },
 
 })
