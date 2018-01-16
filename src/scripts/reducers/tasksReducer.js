@@ -23,22 +23,20 @@ export default injectReducer(initialState.tasks, {
 
         const newState = state.concat();
 
-        newState.splice(newState.indexOf(action.index), 0);
+        newState.splice(action.index, 1);
 
         return newState;
     },
     [`${REMOVE_SELECTED_TASKS}`]: state => {
         const newState = state.concat();
 
-        newState.filter(cur => {
-            return cur.status === NAME_IN_PROGRESS;
-        });
-
-        return newState;
+        return newState.filter(cur => cur.status === NAME_IN_PROGRESS);
     },
     [`${SELECT_ALL_TASKS}`]: state => {
+
         return state.map(cur => {
             cur.status = NAME_DONE;
+            return cur;
         });
 
     },

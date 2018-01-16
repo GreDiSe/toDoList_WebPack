@@ -6,7 +6,12 @@ import TodoList from  './TodoList';
 export default class Container extends React.Component {
     render() {
         return (
-            <div className={'width'}>
+            <div>
+                <h3 style={{
+                    width: '400px',
+                    'text-align': 'center',
+                    margin: '5px'
+                }} className={'head'}>TodoList</h3>
                 <TodoInput/>
                 <TodoList/>
                 <TodoFooter/>

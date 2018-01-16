@@ -26,7 +26,7 @@ class TodoFooter extends React.Component {
                 <table>
                     <tbody>
                     <tr>
-                        <td>
+                        <td style={{paddingLeft: '25px'}}>
                             <Button
                                 onClick={this.props.onSelectAllEl}
                                 raised color="primary">

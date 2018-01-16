@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+*{
+    font-family: 'Lato', sans-serif;
+}
 body {
     margin: 0;
     padding: 0;
@@ -7,6 +11,9 @@ body {
     border-radius: 4px;
     width: 95%;
     height: 24px;
+}
+.paddingLeft{
+    padding-left: 20px;
 }
 .buttonAdd{
     height: 30px;
@@ -45,7 +52,7 @@ h5{
     border-bottom: 2px solid black;
 }
 table{
-    border: 2px solid grey;
+    border: 2px solid #303F9F;
 }
 .cross{
     text-decoration:line-through;
@@ -60,4 +67,9 @@ table{
 .width{
     width: 400px;
     padding: 0;
+    margin: 50px;
+}
+.head{
+    text-align: center;
+    margin: 5px;
 }

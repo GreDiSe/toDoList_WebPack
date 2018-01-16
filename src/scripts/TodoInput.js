@@ -6,12 +6,17 @@ import { addTask } from "./action/tasksActions";
 
 class TodoInput extends React.Component {
 
+    buttonAddTasks = () => {
+        const value = this.ref.value;
+        this.props.onAddTask(value);
+        this.ref.value = '';
+    };
     render() {
         return (
             <table >
                 <tbody>
-                <tr className={'addTask'}>
-                    <td>
+                <tr>
+                    <td style={{paddingLeft: '20px'}}>
                         <TextField
                             inputRef={ref => this.ref = ref}
                             placeholder="Введи задачу"
@@ -19,7 +24,7 @@ class TodoInput extends React.Component {
                     </td>
                     <td>
                         <Button
-                            onClick={() => this.props.onAddTask(this.ref.value)}
+                            onClick={this.buttonAddTasks}
                             raised color="primary">
                             Добавить
                         </Button>

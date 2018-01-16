@@ -14,8 +14,8 @@ class TodoListItem extends React.Component {
             <ListItem
                 style={
                     {
-                    padding: 0,
-                    width: '396px'
+                        padding: 0,
+                        width: '396px',
                     }
                 }
                 dense

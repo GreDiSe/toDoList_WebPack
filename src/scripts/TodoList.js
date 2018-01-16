@@ -4,10 +4,20 @@ import List from 'material-ui/List';
 import { connect } from 'react-redux';
 import { removeTask, changeStatus } from "./action/tasksActions";
 import { showCountTasks } from "./action/countActions";
+import { NAME_IN_PROGRESS, NAME_DONE } from "./store/initialState";
 
 class TodoList extends React.Component {
+    checkForRenderTask = (item) => {
+        if (this.props.radioChecked === NAME_DONE && item.status !== NAME_DONE) {
+            return false;
+        } else if (this.props.radioChecked === NAME_IN_PROGRESS && item.status !== NAME_IN_PROGRESS) {
+            return false;
+        } else {
+            return true;
+        }
+    };
     render() {
-        const tasks = this.props.state.filter(cur => cur.status === this.props.radioChecked);
+        const tasks = this.props.state.filter(this.checkForRenderTask);
         this.props.onShowCountTasks(tasks.length);
         return (
             <List
@@ -15,7 +25,7 @@ class TodoList extends React.Component {
                     {
                         width: '396px',
                         padding: 0,
-                        border: '2px solid grey'
+                        border: '2px solid #303F9F'
                     }
                 }
             >
