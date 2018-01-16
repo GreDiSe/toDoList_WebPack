@@ -7,8 +7,8 @@ import { showCountTasks } from "./action/countActions";
 
 class TodoList extends React.Component {
     render() {
-        const tasks = this.props.filter(cur => cur.status === this.props.radioChecked);
-        this.onShowCountTasks(tasks.length);
+        const tasks = this.props.state.filter(cur => cur.status === this.props.radioChecked);
+        this.props.onShowCountTasks(tasks.length);
         return (
             <List
                 style={
@@ -24,8 +24,8 @@ class TodoList extends React.Component {
                         <TodoListItem
                             key={i}
                             task={curTask}
-                            deleteTask={() => this.onRemoveTask(i)}
-                            checkedItem={() => this.onChangeStatus(i)}
+                            deleteTask={() => this.props.onRemoveTask(i)}
+                            checkedItem={() => this.props.onChangeStatus(i)}
                         />
                     )
                 })}

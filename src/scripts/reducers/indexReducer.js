@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import tasksReducer from  '../reducers/tasksReducer';
-import radioCheckedReducer from  '../reducers/radioCheckedReducer';
-import countReducer from  '../reducers/countReducer';
+import tasks from  '../reducers/tasksReducer';
+import radioChecked from  '../reducers/radioCheckedReducer';
+import count from  '../reducers/countReducer';
 
 const appReducer =  combineReducers({
-    tasksReducer,
-    radioCheckedReducer,
-    countReducer
+    tasks,
+    radioChecked,
+    count
 });
 
 export default appReducer;

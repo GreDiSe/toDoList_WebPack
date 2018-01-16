@@ -19,7 +19,7 @@ class TodoInput extends React.Component {
                     </td>
                     <td>
                         <Button
-                            onClick={() => this.onAddTask(this.ref.value)}
+                            onClick={() => this.props.onAddTask(this.ref.value)}
                             raised color="primary">
                             Добавить
                         </Button>
@@ -31,7 +31,7 @@ class TodoInput extends React.Component {
     }
 }
 export default connect(
-    state,
+    state => (state),
     dispatch => ({
         onAddTask: value => {
             dispatch(addTask(value))

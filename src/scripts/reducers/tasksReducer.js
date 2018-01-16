@@ -11,14 +11,14 @@ import injectReducer from './injectReducer'
 import {initialState} from '../store/initialState';
 
 
-export default injectReducer(initialState.tasks = [], {
-    [`${ADD_TASK}`]: (state, action) => ({
+export default injectReducer(initialState.tasks, {
+    [`${ADD_TASK}`]: (state, action) => [
         ...state,
-        tasks: {
+        {
             name: action.content,
             status: NAME_IN_PROGRESS
         }
-    }),
+    ],
     [`${REMOVE_TASK}`]: (state, action) => {
 
         const newState = state.concat();

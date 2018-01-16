@@ -20,6 +20,7 @@ class TodoFooter extends React.Component {
 
 
     render() {
+        console.log(this.props);
         return (
             <div>
                 <table>
@@ -27,14 +28,14 @@ class TodoFooter extends React.Component {
                     <tr>
                         <td>
                             <Button
-                                onClick={this.onSelectAllEl}
+                                onClick={this.props.onSelectAllEl}
                                 raised color="primary">
                                 Выделить
                             </Button>
                         </td>
                         <td>
                             <Button
-                                onClick={this.onDeleteSelected}
+                                onClick={this.props.onDeleteSelected}
                                 raised color="primary">
                                 Удалить выделенные
                             </Button>
@@ -45,7 +46,7 @@ class TodoFooter extends React.Component {
                 <table className={'info'}>
                     <tbody>
                     <tr>
-                        <td ref='count'>Количество: {this.props.count}</td>
+                        <td>Количество: {this.props.count}</td>
                         <td><input
                             ref='all'
                             defaultChecked={true}
