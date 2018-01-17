@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'material-ui/RaisedButton';
+import Button from 'material-ui/Button';
 import { connect } from 'react-redux';
 import { NAME_ALL, NAME_DONE, NAME_IN_PROGRESS } from "../store/initialState";
 import { removeSelectedTasks, selectAllTasks } from "../action/tasksActions";
@@ -26,18 +26,14 @@ class TodoFooter extends React.Component {
                     <tbody>
                     <tr>
                         <td style={{paddingLeft: '25px'}}>
-                            <Button
-                                onClick={this.props.onSelectAllEl}
-                                label="Выделить"
-                                primary={true}
-                            />
+                            <Button onClick={this.props.onSelectAllEl}>
+                                Выделить
+                            </Button>
                         </td>
                         <td>
-                            <Button
-                                onClick={this.props.onDeleteSelected}
-                                label=" Удалить выделенные"
-                                primary={true}
-                            />
+                            <Button onClick={this.props.onDeleteSelected}>
+                                Удалить выделенные
+                            </Button>
                         </td>
                     </tr>
                     </tbody>

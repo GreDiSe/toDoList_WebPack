@@ -1,65 +1,40 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
-import { connect } from 'react-redux';
-import { addTask } from "../action/tasksActions";
-import { substringValue } from "../action/substringAction";
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-const theme = createMuiTheme({
-    overrides: {}
-});
+import {connect} from 'react-redux';
+import {addTask} from "../action/tasksActions";
+import {substringValue} from "../action/substringAction";
+import FadeMenu from './FadeMenu';
+import {createMuiTheme, MuiThemeProvider} from 'material-ui/styles';
 
-        class TodoInput extends React.Component {
-    constructor() {
-        super();
-        this.state = {value: 1};
-    }
+const theme = createMuiTheme({});
 
-    childContextTypes = {
-        muiTheme: React.PropTypes.object
-    };
 
-    getChildContext = () => {
-        return {
-            muiTheme: ThemeManager.getCurrentTheme()
-        };
-    };
-
-    handleChange = (event, index, value) => this.setState({value});
-
+class TodoInput extends React.Component {
     buttonAddTasks = () => {
         const value = this.ref.value;
         this.props.onAddTask(value);
+        this.props.onSubstringValue('');
         this.ref.value = '';
     };
     render() {
-        console.log(this.props);
         return (
             <table >
                 <tbody>
                 <tr>
                     <td style={{paddingLeft: '20px'}}>
-                        <TextField
-                            id={'textField'}
-                            onChange={this.props.onSubstringValue}
-                            hintText="Введи задачу"
-                            style={{}}
-                        />
+                        <MuiThemeProvider theme={theme}>
+                            <TextField
+                                inputRef={ref => this.ref = ref}
+                            >
+                                Введи задачу
+                            </TextField>
+                        </MuiThemeProvider>
                     </td>
                     <td>
-                        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
-                            <MenuItem value={1} primaryText="Never" />
-                            <MenuItem value={2} primaryText="Every Night" />
-                            <MenuItem value={3} primaryText="Weeknights" />
-                            <MenuItem value={4} primaryText="Weekends" />
-                            <MenuItem value={5} primaryText="Weekly" />
-                        </DropDownMenu>
-                        {/*<Button
-                            onClick={this.buttonAddTasks}
-                            raised color="primary">
-                            Добавить
-                        </Button>*/}
+                        <FadeMenu items={[
+                            {name: 'Добавление', func: this.buttonAddTasks},
+                            {name: 'Поиск', func: () => this.props.onSubstringValue(this.ref.value)}
+                        ]}/>
                     </td>
                 </tr>
                 </tbody>
@@ -74,8 +49,9 @@ export default connect(
         onAddTask: value => {
             dispatch(addTask(value))
         },
-        onSubstringValue: event => {
-            dispatch(substringValue(event.target.value))
+        onSubstringValue: value => {
+            dispatch(substringValue(value))
         }
     })
 )(TodoInput);
+

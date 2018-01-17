@@ -12,9 +12,7 @@ class TodoList extends React.Component {
             return false;
         } else if (this.props.radioChecked === NAME_IN_PROGRESS && item.status !== NAME_IN_PROGRESS) {
             return false;
-        } else {
-            return true;
-        }
+        } else return !item.name.includes(this.props.substring);
     };
     render() {
         const tasks = this.props.state.filter(this.checkForRenderTask);
@@ -46,7 +44,8 @@ class TodoList extends React.Component {
 export default connect(
     state => ({
         state: state.tasks,
-        radioChecked: state.radioChecked
+        radioChecked: state.radioChecked,
+        substring: state.substring
     }),
     dispatch => ({
         onRemoveTask: index => {
