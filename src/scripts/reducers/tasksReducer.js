@@ -3,11 +3,12 @@ import {
     REMOVE_TASK,
     REMOVE_SELECTED_TASKS,
     SELECT_ALL_TASKS,
-    CHANGE_STATUS
+    CHANGE_STATUS,
+    SEARCH_TASKS
 } from '../action/actionTypes';
 
 import { NAME_IN_PROGRESS, NAME_DONE } from "../store/initialState";
-import injectReducer from './injectReducer'
+import injectReducer from './helper/injectReducer'
 import {initialState} from '../store/initialState';
 
 
@@ -42,15 +43,17 @@ export default injectReducer(initialState.tasks, {
     },
     [`${CHANGE_STATUS}`]: (state, action) => {
         const newState = state.concat();
-        console.log('Start', state, action.index);
 
         newState[action.index].status = newState[action.index].status === NAME_IN_PROGRESS ?
             NAME_DONE :
             NAME_IN_PROGRESS;
 
 
-        console.log('End', newState);
         return newState;
     },
-
+    [`${SEARCH_TASKS}`]: (state, action) => {
+        return state.filter(cur => {
+            return !!(cur.name.indexOf(action.value) + 1)
+        })
+    }
 })

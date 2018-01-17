@@ -6,5 +6,6 @@ export const NAME_DONE = 'done';
 export const initialState = {
     tasks: [],
     radioChecked: NAME_ALL,
-    count: 0
+    count: 0,
+    substring: ''
 };

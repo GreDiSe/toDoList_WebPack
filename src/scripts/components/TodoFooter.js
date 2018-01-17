@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from 'material-ui/Button';
+import Button from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
-import { NAME_ALL, NAME_DONE, NAME_IN_PROGRESS } from "./store/initialState";
-import { removeSelectedTasks, selectAllTasks } from "./action/tasksActions";
-import { changeRadioButton } from "./action/radioCheckedActions";
+import { NAME_ALL, NAME_DONE, NAME_IN_PROGRESS } from "../store/initialState";
+import { removeSelectedTasks, selectAllTasks } from "../action/tasksActions";
+import { changeRadioButton } from "../action/radioCheckedActions";
 
 
 class TodoFooter extends React.Component {
@@ -20,7 +20,6 @@ class TodoFooter extends React.Component {
 
 
     render() {
-        console.log(this.props);
         return (
             <div>
                 <table>
@@ -29,16 +28,16 @@ class TodoFooter extends React.Component {
                         <td style={{paddingLeft: '25px'}}>
                             <Button
                                 onClick={this.props.onSelectAllEl}
-                                raised color="primary">
-                                Выделить
-                            </Button>
+                                label="Выделить"
+                                primary={true}
+                            />
                         </td>
                         <td>
                             <Button
                                 onClick={this.props.onDeleteSelected}
-                                raised color="primary">
-                                Удалить выделенные
-                            </Button>
+                                label=" Удалить выделенные"
+                                primary={true}
+                            />
                         </td>
                     </tr>
                     </tbody>

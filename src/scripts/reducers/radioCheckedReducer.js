@@ -1,5 +1,5 @@
 import { CHANGE_RADIO_BUTTON } from '../action/actionTypes';
-import injectReducer from './injectReducer'
+import injectReducer from './helper/injectReducer'
 import {initialState} from '../store/initialState';
 
 export default injectReducer(initialState.radioChecked, {

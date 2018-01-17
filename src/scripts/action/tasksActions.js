@@ -3,7 +3,8 @@ import {
     REMOVE_TASK,
     REMOVE_SELECTED_TASKS,
     SELECT_ALL_TASKS,
-    CHANGE_STATUS
+    CHANGE_STATUS,
+    SEARCH_TASKS
 } from './actionTypes';
 
 export const addTask = task => ({
@@ -27,4 +28,9 @@ export const selectAllTasks = () => ({
 export const changeStatus = index => ({
     type: CHANGE_STATUS,
     index: index
+});
+
+export const searchTasks = value => ({
+    type: SEARCH_TASKS,
+    value: value
 });

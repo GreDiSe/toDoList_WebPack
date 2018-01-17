@@ -2,9 +2,9 @@ import React from 'react';
 import TodoListItem from './TodoListItem';
 import List from 'material-ui/List';
 import { connect } from 'react-redux';
-import { removeTask, changeStatus } from "./action/tasksActions";
-import { showCountTasks } from "./action/countActions";
-import { NAME_IN_PROGRESS, NAME_DONE } from "./store/initialState";
+import { removeTask, changeStatus } from "../action/tasksActions";
+import { showCountTasks } from "../action/countActions";
+import { NAME_IN_PROGRESS, NAME_DONE } from "../store/initialState";
 
 class TodoList extends React.Component {
     checkForRenderTask = (item) => {
@@ -58,6 +58,5 @@ export default connect(
         onShowCountTasks: count => {
             dispatch(showCountTasks(count))
         }
-
     })
 )(TodoList);

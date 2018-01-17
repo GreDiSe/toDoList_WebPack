@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoInput from './TodoInput';
 import TodoFooter from './TodoFooter';
-import TodoList from  './TodoList';
+import TodoList from './TodoList';
 
 export default class Container extends React.Component {
     render() {
@@ -9,7 +9,7 @@ export default class Container extends React.Component {
             <div>
                 <h3 style={{
                     width: '400px',
-                    'text-align': 'center',
+                    textAlign: 'center',
                     margin: '5px'
                 }} className={'head'}>TodoList</h3>
                 <TodoInput/>

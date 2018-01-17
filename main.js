@@ -4,11 +4,11 @@ import { Provider } from 'react-redux';
 import { store } from './src/scripts/store/configurateStore'
 
 
-import Container from './src/scripts/Container.js';
-import './src/scripts/TodoFooter.js';
-import './src/scripts/TodoInput.js';
-import './src/scripts/TodoListItem.js';
-import './src/scripts/TodoList.js';
+import Container from './src/scripts/components/Container.js';
+import './src/scripts/components/TodoFooter.js';
+import './src/scripts/components/TodoInput.js';
+import './src/scripts/components/TodoListItem.js';
+import './src/scripts/components/TodoList.js';
 
 import './src/style/style.css';
 

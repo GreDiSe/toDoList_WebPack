@@ -3,7 +3,7 @@ import { ListItem, ListItemSecondaryAction, ListItemText } from 'material-ui/Lis
 import Checkbox from 'material-ui/Checkbox';
 import IconButton from 'material-ui/IconButton';
 import Close from 'material-ui-icons/Close';
-import { NAME_DONE } from "./store/initialState";
+import { NAME_DONE } from "../store/initialState";
 
 class TodoListItem extends React.Component {
 
