@@ -48,7 +48,9 @@ class FadeMenu extends React.Component {
                                 key={i}
                                 onClick={() => {
                                     this.handleClose();
-                                    this.setState({name: cur.name});
+                                    this.setState(prevState => {
+                                        return cur.name !== 'Загрузить' ?  {name: cur.name} : {...prevState};
+                                    });
                                     cur.func();
                                 }}
                             >

@@ -4,7 +4,8 @@ import {
     REMOVE_SELECTED_TASKS,
     SELECT_ALL_TASKS,
     CHANGE_STATUS,
-    SEARCH_TASKS
+    SEARCH_TASKS,
+    DOWNLOAD_TASKS
 } from './actionTypes';
 
 export const addTask = task => ({
@@ -33,4 +34,9 @@ export const changeStatus = index => ({
 export const searchTasks = value => ({
     type: SEARCH_TASKS,
     value: value
+});
+
+export const downloadTasks = state => ({
+    type: DOWNLOAD_TASKS,
+    state: state
 });

@@ -1,20 +1,30 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 import {connect} from 'react-redux';
-import {addTask} from "../action/tasksActions";
-import {substringValue} from "../action/substringAction";
+import { substringValue } from "../action/substringAction";
+import { addTask, downloadTasks } from "../action/tasksActions";
 import FadeMenu from './FadeMenu';
 import {createMuiTheme, MuiThemeProvider} from 'material-ui/styles';
 
 const theme = createMuiTheme({});
 
-
+const prepareToDownloadTasks = () => dispatch => {
+    fetch('https://api.myjson.com/bins/fjs59')
+        .then(response => response.json())
+        .then(response => {
+            dispatch(downloadTasks(response));
+        })
+        .catch(error => {
+            console.log(error);
+        })
+};
 
 class TodoInput extends React.Component {
     constructor() {
         super();
         this.func = () => {};
     }
+
     buttonAddTasks = () => {
         const value = this.ref.value;
         this.props.onAddTask(value);
@@ -42,7 +52,8 @@ class TodoInput extends React.Component {
                     <td>
                         <FadeMenu items={[
                             {name: 'Добавление', func: () => this.func = this.buttonAddTasks},
-                            {name: 'Поиск', func: () => this.func = () => this.props.onSubstringValue(this.ref.value)}
+                            {name: 'Поиск', func: () => this.func = () => this.props.onSubstringValue(this.ref.value)},
+                            {name: 'Загрузить', func: this.props.onDownload}
                         ]}
                         />
                     </td>
@@ -59,12 +70,14 @@ export default connect(
         onAddTask: value => {
             value &&
             dispatch(addTask(value));
-            return false;
         },
         onSubstringValue: value => {
-            dispatch(substringValue(value))
-            return false;
+            dispatch(substringValue(value));
+        },
+        onDownload: () => {
+            dispatch(prepareToDownloadTasks());
         }
+
     })
 )(TodoInput);
 

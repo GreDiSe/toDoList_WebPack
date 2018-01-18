@@ -4,7 +4,8 @@ import {
     REMOVE_SELECTED_TASKS,
     SELECT_ALL_TASKS,
     CHANGE_STATUS,
-    SEARCH_TASKS
+    SEARCH_TASKS,
+    DOWNLOAD_TASKS
 } from '../action/actionTypes';
 
 import { NAME_IN_PROGRESS, NAME_DONE } from "../store/initialState";
@@ -55,5 +56,8 @@ export default injectReducer(initialState.tasks, {
         return state.filter(cur => {
             return !!(cur.name.indexOf(action.value) + 1)
         })
+    },
+    [`${DOWNLOAD_TASKS}`]: (state, action) => {
+        return [...action.state];
     }
 })
