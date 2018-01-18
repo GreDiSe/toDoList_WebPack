@@ -4,9 +4,14 @@ import Menu, { MenuItem } from 'material-ui/Menu';
 import Fade from 'material-ui/transitions/Fade';
 
 class FadeMenu extends React.Component {
-    state = {
-        anchorEl: null,
-    };
+    constructor(){
+        super();
+        this.state = {
+            anchorEl: null,
+            name: 'menu'
+        };
+    }
+
 
     handleClick = event => {
         this.setState({ anchorEl: event.currentTarget });
@@ -19,6 +24,7 @@ class FadeMenu extends React.Component {
     render() {
         const { anchorEl } = this.state;
 
+
         return (
             <div>
                 <Button
@@ -26,7 +32,7 @@ class FadeMenu extends React.Component {
                     aria-haspopup="true"
                     onClick={this.handleClick}
                 >
-                    menu
+                    {this.state.name}
                 </Button>
                 <Menu
                     id="fade-menu"
@@ -42,7 +48,8 @@ class FadeMenu extends React.Component {
                                 key={i}
                                 onClick={() => {
                                     this.handleClose();
-                                    cur.func()
+                                    this.setState({name: cur.name});
+                                    cur.func();
                                 }}
                             >
                                 {cur.name}

@@ -12,11 +12,12 @@ class TodoList extends React.Component {
             return false;
         } else if (this.props.radioChecked === NAME_IN_PROGRESS && item.status !== NAME_IN_PROGRESS) {
             return false;
-        } else return !item.name.includes(this.props.substring);
+        } else return item.name.includes(this.props.substring);
     };
     render() {
         const tasks = this.props.state.filter(this.checkForRenderTask);
-        this.props.onShowCountTasks(tasks.length);
+        this.props.count !== tasks.length && this.props.onShowCountTasks(tasks.length);
+
         return (
             <List
                 style={
@@ -45,7 +46,8 @@ export default connect(
     state => ({
         state: state.tasks,
         radioChecked: state.radioChecked,
-        substring: state.substring
+        substring: state.substring,
+        count: state.count
     }),
     dispatch => ({
         onRemoveTask: index => {

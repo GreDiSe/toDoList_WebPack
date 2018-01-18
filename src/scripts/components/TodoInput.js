@@ -9,13 +9,19 @@ import {createMuiTheme, MuiThemeProvider} from 'material-ui/styles';
 const theme = createMuiTheme({});
 
 
+
 class TodoInput extends React.Component {
+    constructor() {
+        super();
+        this.func = () => {};
+    }
     buttonAddTasks = () => {
         const value = this.ref.value;
         this.props.onAddTask(value);
         this.props.onSubstringValue('');
         this.ref.value = '';
     };
+
     render() {
         return (
             <table >
@@ -23,18 +29,22 @@ class TodoInput extends React.Component {
                 <tr>
                     <td style={{paddingLeft: '20px'}}>
                         <MuiThemeProvider theme={theme}>
-                            <TextField
-                                inputRef={ref => this.ref = ref}
-                            >
-                                Введи задачу
-                            </TextField>
+                            <form onSubmit={e => {this.func(); e.preventDefault()}}>
+                                <TextField
+                                    id={'textField'}
+                                    inputRef={ref => this.ref = ref}
+                                >
+                                    Введи задачу
+                                </TextField>
+                            </form>
                         </MuiThemeProvider>
                     </td>
                     <td>
                         <FadeMenu items={[
-                            {name: 'Добавление', func: this.buttonAddTasks},
-                            {name: 'Поиск', func: () => this.props.onSubstringValue(this.ref.value)}
-                        ]}/>
+                            {name: 'Добавление', func: () => this.func = this.buttonAddTasks},
+                            {name: 'Поиск', func: () => this.func = () => this.props.onSubstringValue(this.ref.value)}
+                        ]}
+                        />
                     </td>
                 </tr>
                 </tbody>
@@ -47,10 +57,13 @@ export default connect(
     state => (state),
     dispatch => ({
         onAddTask: value => {
-            dispatch(addTask(value))
+            value &&
+            dispatch(addTask(value));
+            return false;
         },
         onSubstringValue: value => {
             dispatch(substringValue(value))
+            return false;
         }
     })
 )(TodoInput);
